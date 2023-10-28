@@ -2,6 +2,8 @@ import Header from "./components/header/header";
 import Entrada from "./components/entrada/entrada";
 import QuemSomos from "./components/quemSomos/quemSomos";
 import Cards from "./components/cards/cards";
+import SolicitacaoDeServico from "./components/solicitacaoDeServico/solicitacaoDeServico";
+import Footer from "./components/footer/footer";
 
 function App() {
   return (
@@ -11,7 +13,9 @@ function App() {
         <Entrada/>
         <QuemSomos/>
         <Cards/>
+        <SolicitacaoDeServico/>
       </main>
+      <Footer/>
     </div>
   );
 }
