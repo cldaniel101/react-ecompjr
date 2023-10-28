@@ -1,5 +1,5 @@
-import './header.css'
-import React from 'react';
+import "./header.css";
+import React from "react";
 
 function Header() {
 	return (
@@ -27,11 +27,13 @@ function Header() {
 			</div>
 			<div id="botao-cabecalho">
 				<a href="#solicitacao-de-servico">
-					<button className="solicitar-servico">Solicitar Serviço</button>
+					<button className="solicitar-servico">
+						Solicitar Serviço
+					</button>
 				</a>
 			</div>
 		</header>
 	);
 }
 
-export default Header
+export default Header;
