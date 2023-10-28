@@ -4,6 +4,7 @@ import QuemSomos from "./components/quemSomos/quemSomos";
 import Cards from "./components/cards/cards";
 import SolicitacaoDeServico from "./components/solicitacaoDeServico/solicitacaoDeServico";
 import Footer from "./components/footer/footer";
+import './mediaQuery.css'
 
 function App() {
   return (
