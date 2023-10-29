@@ -1,0 +1,29 @@
+section#quem-somos {
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 50px;
+}
+
+#quem-somos h1 {
+	text-align: center;
+	margin: 50px;
+}
+
+#quem-somos #corpo {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+#quem-somos #texto {
+	width: 500px;
+	line-height: 30px;
+}
+
+#texto > p:nth-child(1) {
+	margin-bottom: 20px;
+}
+
+#quem-somos img {
+	width: 450px;
+	border-radius: 40px;
+}

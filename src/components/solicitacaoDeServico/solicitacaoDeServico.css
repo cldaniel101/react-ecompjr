@@ -1,0 +1,103 @@
+section#solicitacao-de-servico {
+	background-color: #f8fafc;
+	border-radius: 50px;
+	display: flex;
+	width: 90%;
+	margin: auto;
+}
+
+#texto-solicitacao {
+	background-color: #29a5f2cf;
+	border-radius: 50px;
+	width: 40vw;
+}
+
+#dtext {
+	width: 60%;
+	margin: auto;
+}
+
+#texto-solicitacao h1 {
+	color: white;
+	font-size: 3em;
+	font-weight: 600;
+	line-height: 50px;
+	margin: 70px 0 30px 0;
+}
+
+#texto-solicitacao p {
+	font-size: 0.8em;
+	color: white;
+}
+
+#dimg {
+	text-align: center;
+}
+
+#texto-solicitacao img {
+	width: 250px;
+	margin: 70px 0;
+}
+
+div#formulario {
+	padding: 70px;
+}
+
+#formulario > h2 {
+	font-size: 2em;
+	margin: 10px 0;
+}
+
+#formulario > p {
+	margin-bottom: 30px;
+	width: 75%;
+	color: #52525b;
+}
+
+#formulario label {
+	font-weight: 500;
+	font-size: 0.9em;
+	display: block;
+	margin-bottom: 5px;
+}
+
+#formulario form > p {
+	margin-bottom: 15px;
+}
+
+#formulario form > p > input {
+	border: 1px solid #52525b8a;
+	border-radius: 10px;
+	background-color: #f8fafc;
+	height: 35px;
+	width: 75%;
+	padding: 0 10px;
+}
+
+#formulario form > p > textarea#idescricao {
+	border: 1px solid #52525b8a;
+	border-radius: 10px;
+	background-color: #f8fafc;
+	width: 75%;
+	padding: 10px;
+}
+
+#formulario form > p > #botao-enviar {
+	font-weight: 600;
+	width: 150px;
+	height: 40px;
+	color: white;
+	background-color: #2e468c;
+	position: relative;
+	left: 40%;
+	transform: translateX(-50%);
+}
+
+#formulario > #duvidas {
+	font-size: 0.7em;
+}
+
+#formulario > #duvidas > a {
+	text-decoration: none;
+	color: #2182bf;
+}
