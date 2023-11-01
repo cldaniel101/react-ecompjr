@@ -17,6 +17,7 @@ function Header() {
 					<a
 						href="https://www.ecomp.uefs.br/ecossistema/ecompjr"
 						target="_blank"
+						rel="noreferrer"
 					>
 						Contato
 					</a>

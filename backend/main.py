@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, HTTPException, status, Response
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
 from models import Servico
@@ -10,6 +11,13 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"], 
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/api/servicos", response_model=ServicoResponse, status_code=status.HTTP_201_CREATED)
 def create(request: ServicoRequest, db: Session = Depends(get_db)):

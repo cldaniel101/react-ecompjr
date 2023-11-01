@@ -91,6 +91,7 @@ div#formulario {
 	position: relative;
 	left: 40%;
 	transform: translateX(-50%);
+	cursor: pointer;
 }
 
 #formulario > #duvidas {
@@ -100,4 +101,10 @@ div#formulario {
 #formulario > #duvidas > a {
 	text-decoration: none;
 	color: #2182bf;
+}
+
+.alert {
+	text-align: center;
+	margin-bottom: 20px;
+	color: red;
 }
