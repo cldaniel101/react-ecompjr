@@ -2,10 +2,11 @@ from fastapi import FastAPI, Depends, HTTPException, status, Response
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
-from models import Servico
+from models import Servico, User
 from database import engine, Base, get_db
-from repositories import ServicoRepository
-from schemas import ServicoRequest, ServicoResponse
+from repositories import ServicoRepository, UserRepository
+from schemas import ServicoRequest, ServicoResponse, UserCreate, UserLogin, UserResponse
+
 
 Base.metadata.create_all(bind=engine)
 
@@ -18,6 +19,24 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# Rota de registro de usuário
+@app.post("/api/users/", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
+def create_user(user: UserCreate, db: Session = Depends(get_db)):
+    created_user = UserRepository.create_user(db, User(**user.dict()))
+    return created_user
+
+# Rota de login
+@app.post("/api/login/", response_model=UserResponse)
+def login_user(user_login: UserLogin, db: Session = Depends(get_db)):
+    user = UserRepository.verify_user_password(db, user_login.username, user_login.password)
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Credenciais inválidas",
+        )
+    return user
 
 @app.post("/api/servicos", response_model=ServicoResponse, status_code=status.HTTP_201_CREATED)
 def create(request: ServicoRequest, db: Session = Depends(get_db)):

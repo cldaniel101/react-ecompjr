@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-
-from models import Servico
+from passlib.context import CryptContext
+from models import Servico, User
 
 class ServicoRepository:
     @staticmethod
@@ -30,3 +30,29 @@ class ServicoRepository:
         if servico is not None:
             db.delete(servico)
             db.commit()
+
+class UserRepository:
+    pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+    @staticmethod
+    def find_by_username(db: Session, username: str) -> User:
+        return db.query(User).filter(User.username == username).first()
+
+    @staticmethod
+    def find_by_id(db: Session, user_id: int) -> User:
+        return db.query(User).filter(User.id == user_id).first()
+
+    @staticmethod
+    def create_user(db: Session, user: User) -> User:
+        user.password = UserRepository.pwd_context.hash(user.password)  # Hash da senha
+        db.add(user)
+        db.commit()
+        db.refresh(user)
+        return user
+
+    @staticmethod
+    def verify_user_password(db: Session, username: str, password: str) -> User:
+        user = UserRepository.find_by_username(db, username)
+        if user and UserRepository.pwd_context.verify(password, user.password):
+            return user
+        return None
