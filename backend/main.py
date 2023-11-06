@@ -21,7 +21,7 @@ app.add_middleware(
 
 @app.post("/api/servicos", response_model=ServicoResponse, status_code=status.HTTP_201_CREATED)
 def create(request: ServicoRequest, db: Session = Depends(get_db)):
-    servico = ServicoRepository.save(db, Servico(**request.model_dump()))
+    servico = ServicoRepository.save(db, Servico(**request.dict()))
     return servico
 
 @app.get("/api/servicos", response_model=list[ServicoResponse])
@@ -53,5 +53,5 @@ def update(id: int, request: ServicoRequest, db: Session = Depends(get_db)):
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="Serviço não encontrado"
         )
-    servico = ServicoRepository.save(db, Servico(id=id, **request.model_dump()))
+    servico = ServicoRepository.save(db, Servico(id=id, **request.dict()))
     return servico
