@@ -1,15 +1,14 @@
 from sqlalchemy import Column, Integer, String, Boolean
-from passlib.context import CryptContext
 from database import Base
 
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True, index=True)
-    username = Column(String, unique=True, index=True)
-    email = Column(String, unique=True, index=True)
-    password_hash = Column(String)
-    is_admin = Column(Boolean, default=False)
+    id: int = Column(Integer, primary_key=True, index=True)
+    username: str = Column(String, unique=True, index=True, nullable=False)
+    email: str = Column(String, unique=True, index=True, nullable=False)
+    password: str = Column(String, nullable=False) 
+    is_admin: bool = Column(Boolean, default=False)
 
 class Servico(Base):
     __tablename__ = "serviços"
