@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecomp Jr</title>
+
+    <link rel="stylesheet" href="cadastro.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <a href="#"><img id="logo-cabecalho" src="../../public/img/nome_sem_fundo.png" alt="Logo Ecomp Jr" /></a>
+    </header>
+
+    <main>
+        <h1>Cadastre-se</h1>
+        <p>Crie sua conta para acessar todas as solicitações de serviço da Ecomp Jr.</p>
+        <div id="formulario">
+            <form autocomplete="off" onsubmit="">
+                <p>
+                    <input type="text" name="username" id="iusername" placeholder="Username" maxLength=20 required>
+                </p>
+                <p>
+                    <input type="email" name="email" id="iemail" placeholder="Email" maxLength=50 required>
+                </p>
+                <p>
+                    <input type="password" name="senha" id="isenha" placeholder="Senha" maxLength=20 required>
+                </p>
+                <p>
+                    <input id="botao-cadastrar" type="submit" value="Cadastrar" />
+                </p>
+                <p id="legenda-entrar">Já possui uma conta? <a href="#">Entrar</a></p>
+            </form>
+        </div>
+    </main>
+
+</body>
+
+</html>
