@@ -1,24 +1,19 @@
-import Header from "./components/header/header";
-import Entrada from "./components/entrada/entrada";
-import QuemSomos from "./components/quemSomos/quemSomos";
-import Cards from "./components/cards/cards";
-import SolicitacaoDeServico from "./components/solicitacaoDeServico/solicitacaoDeServico";
-import Footer from "./components/footer/footer";
-import './mediaQuery.css'
+import Home from "./pages/home/home";
+import Cadastro from "./pages/cadastro/cadastro";
+import Login from "./pages/login/login";
+import "./mediaQuery.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  return (
-    <div className="App">
-      <Header/>
-      <main>
-        <Entrada/>
-        <QuemSomos/>
-        <Cards/>
-        <SolicitacaoDeServico/>
-      </main>
-      <Footer/>
-    </div>
-  );
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/cadastro" element={<Cadastro />} />
+				<Route path="/login" element={<Login />} />
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;

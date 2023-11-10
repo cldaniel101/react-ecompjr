@@ -1,7 +1,15 @@
-import "./header.css";
 import React from "react";
+import { Link } from "react-router-dom";
+
+import "./header.css";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+	const navigate = useNavigate()
+	const goToLoginPage = () => {
+		navigate("/login")
+	}
+
 	return (
 		<header>
 			<img
@@ -24,6 +32,9 @@ function Header() {
 				</p>
 				<p>
 					<a href="#">Carta de Serviço</a>
+				</p>
+				<p>
+					<a id="admin" onClick={goToLoginPage}>Administrador</a>
 				</p>
 			</div>
 			<div id="botao-cabecalho">

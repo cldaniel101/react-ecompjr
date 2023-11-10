@@ -1,20 +1,15 @@
-* {
-    padding: 0;
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-}
-
-header img{
+header img#logo-cabecalho{
     width: 150px;
     margin: 20px 30px;
+    cursor: pointer;
 }
 
-h1 {
+h1#titulo-login {
     margin: 25px;
     color: #090914;
 }
 
-main {
+main#corpo-login {
     text-align: center;
     height: calc(100vh - 100px);
     display: flex;
@@ -22,21 +17,14 @@ main {
     align-items: center;
 }
 
-main > p {
-    width: 400px;
-    font-size: 15px;
-    color: #52525B;
-    margin-bottom: 30px;
-}
-
-div#formulario {
+div#formulario-login {
     height: 270px;
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0px 0px 10px 0px #00000038;
 }
 
-form {
+form#form-login {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -44,11 +32,11 @@ form {
     align-items: center;
 }
 
-form > p {
+form#form-login > p.campos {
     width: 100%;
 }
 
-input {
+p.campos > input {
     border-radius: 10px;
     border: 1px solid #71717a61;
     height: 40px;
@@ -82,4 +70,5 @@ input {
     text-decoration: none;
     color: #2563EB;
     font-weight: bold;
+    cursor: pointer;
 }

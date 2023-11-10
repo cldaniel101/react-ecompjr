@@ -13,6 +13,14 @@ header,
 	margin: 0 30px;
 	font-weight: 300;
 	color: #6c6e77;
+	cursor: pointer;
+	text-align: center;
+}
+
+a#admin {
+	color: #2e468c;
+	font-weight: bold;
+	/* text-decoration: underline; */
 }
 
 #botao-cabecalho {

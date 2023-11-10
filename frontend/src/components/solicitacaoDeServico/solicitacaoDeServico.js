@@ -28,8 +28,6 @@ function SolicitacaoDeServico() {
 				}
 			);
 
-			console.log(response.data);
-
 			setNome("");
 			setEmail("");
 			setDescricao("");
