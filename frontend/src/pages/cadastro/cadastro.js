@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import "./cadastro.css";
+import validateEmail from "../../validate";
+
 
 
 function Cadastro() {
@@ -18,14 +20,15 @@ function Cadastro() {
 	const [username, setUsername] = useState("");
 	const [email, setEmail] = useState("");
 	const [senha, setSenha] = useState("");
+	const [showAlert, setShowAlert] = useState(false);
 
 	const Cadastro = async (event) => {
 		event.preventDefault();
 
-		// if (!validateEmail(email)) {
-		// 	setShowAlert(true);
-		// 	return;
-		//   }	
+		if (!validateEmail(email)) {
+			setShowAlert(true);
+			return;
+		  }	
 
 		try {
 			const response = await axios.post(
@@ -63,6 +66,8 @@ function Cadastro() {
 					Crie sua conta para acessar todas as solicitações de serviço
 					da Ecomp Jr.
 				</p>
+				{showAlert && <div className="alert">E-mail inválido. Por favor, verifique seu e-mail.</div>}
+
 				<div id="formulario-cadastro">
 					<form id="form-cadastro" autoComplete="off" onSubmit={Cadastro}>
 						<p className="campos">

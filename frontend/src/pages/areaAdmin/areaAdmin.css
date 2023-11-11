@@ -1,0 +1,75 @@
+:root {
+	--cor1: #52525b;
+	--cor2: #3e3e46;
+}
+
+header img#logo-cabecalho {
+	width: 150px;
+	margin: 20px 30px;
+	cursor: pointer;
+}
+
+main#corpo-admin {
+    padding: 10px;
+}
+
+section#titulo {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 40px;
+}
+
+section#titulo > h1 {
+	margin-bottom: 10px;
+}
+
+section#titulo > p {
+	font-size: 15px;
+	max-width: 400px;
+	color: var(--cor1);
+}
+
+section.servico {
+	max-width: 1050px;
+	margin: auto;
+    margin-bottom: 30px;
+	box-shadow: 0px 0px 10px #0000002a;
+	border-radius: 10px;
+	padding: 30px;
+}
+
+section.servico > div {
+	margin-bottom: 15px;
+}
+
+section.servico h2 {
+	font-size: 15px;
+	font-weight: bolder;
+	color: var(--cor2);
+}
+
+section.servico p {
+	color: var(--cor1);
+    font-size: 15px;
+}
+
+section.servico button {
+	border-radius: 9px;
+	border: 1px solid #0000007e;
+    padding: 5px;
+    margin: 5px 20px 0 0;
+    width: 100px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+section.servico button#bt-update {
+    background-color: #FFD500;
+}
+
+section.servico button#bt-delete {
+    background-color: #FF5830;
+    color: #fff;
+}

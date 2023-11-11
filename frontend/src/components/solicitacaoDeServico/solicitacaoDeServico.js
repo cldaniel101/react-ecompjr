@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 
 import "./solicitacaoDeServico.css";
-import validateEmail from "../validate";
+import validateEmail from "../../validate";
 
 function SolicitacaoDeServico() {
 	const [nome, setNome] = useState("");

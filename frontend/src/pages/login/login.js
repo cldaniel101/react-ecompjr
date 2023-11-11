@@ -21,11 +21,6 @@ function Login() {
 	const Acesso = async (event) => {
 		event.preventDefault();
 
-		// if (!validateEmail(email)) {
-		// 	setShowAlert(true);
-		// 	return;
-		//   }	
-
 		try {
 			const response = await axios.post(
 				"http://127.0.0.1:8000/api/login/",
@@ -38,6 +33,7 @@ function Login() {
 			alert("Acesso realizado com sucesso!");
 
 		} catch (error) {
+			setShowAlert(true);
 			console.error(error);
 		}
 	};
@@ -56,6 +52,9 @@ function Login() {
 
 			<main id="corpo-login">
 				<h1 id="titulo-login">Login</h1>
+				
+				{showAlert && <div className="alert">Credenciais Inválidas. Por favor, verifique os campos digitados.</div>}
+
 				<div id="formulario-login">
 					<form id="form-login" autoComplete="on" onSubmit={Acesso}>
 						<p className="campos">
