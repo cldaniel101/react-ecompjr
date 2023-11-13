@@ -1,5 +1,4 @@
-function ListServicos({ servicos }) {
-	console.log(servicos);
+function ListServicos({ servicos, onClickDelete }) {
 	return (
 		<>
 			{servicos.map((servicos, i) => (
@@ -17,12 +16,12 @@ function ListServicos({ servicos }) {
 						<p>{servicos.descricao}</p>
 					</div>
 					<button id="bt-update">Update</button>
-					<button id="bt-delete">Delete</button>
+					<button id="bt-delete" onClick={() => onClickDelete(servicos.id)}>Delete</button>
 					<span>ID: {servicos.id}</span>
 				</section>
 			))}
 		</>
-	);
+	);  
 }
 
 export default ListServicos;

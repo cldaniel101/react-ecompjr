@@ -7,7 +7,7 @@ import ListServicos from "../../components/listServicos/listServicos";
 
 function AreaAdmin() {
 	const [servicos, setServicos] = useState([]);
-	
+
 	const buscaDados = async () => {
 		try {
 			const response = await axios.get(
@@ -21,7 +21,23 @@ function AreaAdmin() {
 
 	useEffect(() => {
 		buscaDados();
-	}, [setServicos]); 
+	}, [setServicos]);
+
+	const deletarServico = async (id) => {
+		try {
+			await axios.delete(`http://localhost:8000/api/servicos/${id}`);
+			console.log("DELETED");
+
+			buscaDados()
+
+		} catch (error) {
+			console.error("Erro ao deletar serviço:", error);
+		}
+	};
+
+	const handleExcluirServico = (id) => {
+		deletarServico(id);
+	};
 
 	const navigate = useNavigate();
 	const goToHomePage = () => {
@@ -49,9 +65,9 @@ function AreaAdmin() {
 					</p>
 				</section>
 
-				<ListServicos key={servicos.id} servicos={servicos} />
+				<ListServicos servicos={servicos} onClickDelete={handleExcluirServico} />
 			</main>
-		</div>
+		</div>	
 	);
 }
 
