@@ -3,6 +3,10 @@
 	--cor2: #3e3e46;
 }
 
+header button {
+	background-color: white;
+}
+
 header img#logo-cabecalho {
 	width: 150px;
 	margin: 20px 30px;

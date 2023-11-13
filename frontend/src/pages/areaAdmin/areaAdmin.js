@@ -1,25 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import "./areaAdmin.css";
+import ListServicos from "../../components/listServicos/listServicos";
 
 function AreaAdmin() {
-    const navigate = useNavigate()
-    const goToHomePage = () => {
-		navigate("/")
-	}
+	const [servicos, setServicos] = useState([]);
+	
+	const buscaDados = async () => {
+		try {
+			const response = await axios.get(
+				"http://localhost:8000/api/servicos"
+			);
+			setServicos(response.data);
+		} catch (error) {
+			console.error("Erro ao buscar dados da API:", error);
+		}
+	};
+
+	useEffect(() => {
+		buscaDados();
+	}, [setServicos]); 
+
+	const navigate = useNavigate();
+	const goToHomePage = () => {
+		navigate("/");
+	};
 
 	return (
 		<div>
 			<header>
-				<a onClick={goToHomePage}>
+				<button onClick={goToHomePage}>
 					<img
 						id="logo-cabecalho"
 						src="img/nome_sem_fundo.png"
 						alt="Logo Ecomp Jr"
 					/>
-				</a>
+				</button>
 			</header>
 
 			<main id="corpo-admin">
@@ -30,58 +48,11 @@ function AreaAdmin() {
 						para a EcompJr.
 					</p>
 				</section>
-				<section className="servico">
-					<div id="nome-completo">
-						<h2>Nome Completo</h2>
-						<p>Cláudio Daniel Figueredo Peruna</p>
-					</div>
-					<div id="email">
-						<h2>Email</h2>
-						<p>danielperuna2012@gmail.com</p>
-					</div>
-					<div id="descricao">
-						<h2>Descrição</h2>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Totam, tenetur eaque voluptas eos quae libero,
-							itaque velit, eum dolores earum molestiae? Ullam
-							nihil laudantium iure veritatis perspiciatis vitae
-							officia corporis? Lorem ipsum dolor, sit amet
-							consectetur adipisicing elit. Laudantium quae ab
-							praesentium cum consectetur! Necessitatibus facilis
-							totam voluptate, excepturi velit, pariatur
-							architecto cumque ipsum dolores placeat
-							reprehenderit. Debitis, beatae eaque!
-						</p>
-					</div>
-					<button id="bt-update">Update</button>
-					<button id="bt-delete">Delete</button>
-				</section>
-				<section className="servico">
-					<div id="nome-completo">
-						<h2>Nome Completo</h2>
-						<p>Cláudio Daniel Figueredo Peruna</p>
-					</div>
-					<div id="email">
-						<h2>Email</h2>
-						<p>danielperuna2012@gmail.com</p>
-					</div>
-					<div id="descricao">
-						<h2>Descrição</h2>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing
-							elit. Totam, tenetur eaque voluptas eos quae libero,
-							itaque velit, eum dolores earum molestiae? Ullam
-							nihil laudantium iure veritatis perspiciatis vitae
-							officia corporis?
-						</p>
-					</div>
-					<button id="bt-update">Update</button>
-					<button id="bt-delete">Delete</button>
-				</section>
+
+				<ListServicos key={servicos.id} servicos={servicos} />
 			</main>
 		</div>
 	);
 }
 
-export default AreaAdmin
+export default AreaAdmin;
