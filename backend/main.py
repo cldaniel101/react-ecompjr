@@ -1,6 +1,9 @@
 from fastapi import FastAPI, Depends, HTTPException, status, Response
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+import jwt
 from sqlalchemy.orm import Session
+from datetime import datetime, timedelta
 
 from models import Servico, User
 from database import engine, Base, get_db
@@ -20,6 +23,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+SECRET_KEY = "uj$ljw+aeg+6hw^@0e5y*vry$76!gaa0y_ta@185dijdo*wzu0"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+# Função para criar um token JWT
+def create_access_token(data: dict, expires_minutes: int):
+    to_encode = data.copy()
+    expire = datetime.utcnow() + timedelta(minutes=expires_minutes)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
 
 # Rota de registro de usuário
 @app.post("/api/users/", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
@@ -28,7 +45,7 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
     return created_user
 
 # Rota de login
-@app.post("/api/login/", response_model=UserResponse)
+@app.post("/api/login/", response_model=dict)
 def login_user(user_login: UserLogin, db: Session = Depends(get_db)):
     user = UserRepository.verify_user_password(db, user_login.username, user_login.password)
     if not user:
@@ -36,8 +53,37 @@ def login_user(user_login: UserLogin, db: Session = Depends(get_db)):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Credenciais inválidas",
         )
-    return user
 
+    # Criar um token JWT
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(
+        data={"sub": user.username}, expires_minutes=ACCESS_TOKEN_EXPIRE_MINUTES
+    )
+
+    return {"access_token": access_token, "token_type": "bearer"}
+
+# Rota protegida com autenticação JWT
+@app.get("/api/check-auth")
+async def check_auth(token: str = Depends(oauth2_scheme)):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Token inválido",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username: str = payload.get("sub")
+        if username is None:
+            raise credentials_exception
+    except jwt.ExpiredSignatureError:
+        raise credentials_exception
+    except jwt.InvalidTokenError:
+        raise credentials_exception
+
+    return {"status": "authorized", "username": username}
+
+
+# Serviços
 @app.post("/api/servicos", response_model=ServicoResponse, status_code=status.HTTP_201_CREATED)
 def create(request: ServicoRequest, db: Session = Depends(get_db)):
     servico = ServicoRepository.save(db, Servico(**request.dict()))

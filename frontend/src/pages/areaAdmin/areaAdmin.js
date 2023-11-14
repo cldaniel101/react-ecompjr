@@ -26,10 +26,8 @@ function AreaAdmin() {
 	const deletarServico = async (id) => {
 		try {
 			await axios.delete(`http://localhost:8000/api/servicos/${id}`);
-			console.log("DELETED");
 
 			buscaDados()
-
 		} catch (error) {
 			console.error("Erro ao deletar serviço:", error);
 		}
