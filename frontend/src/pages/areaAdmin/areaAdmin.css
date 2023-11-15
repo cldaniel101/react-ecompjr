@@ -3,14 +3,31 @@
 	--cor2: #3e3e46;
 }
 
-header button {
+header#cabecalho-areaAdmin {
+	display: flex;
+}
+
+header#cabecalho-areaAdmin button {
 	background-color: white;
 }
 
-header img#logo-cabecalho {
+header#cabecalho-areaAdmin img#logo-cabecalho {
 	width: 150px;
 	margin: 20px 30px;
 	cursor: pointer;
+}
+
+header#cabecalho-areaAdmin button#botao-sair {
+	position: absolute;
+	right: 50px;
+	font-size: 18px;
+	font-weight: 600;
+	color: #FF5830;
+	cursor: pointer;
+}
+
+button#botao-sair:hover {
+	text-decoration: underline;
 }
 
 main#corpo-admin {

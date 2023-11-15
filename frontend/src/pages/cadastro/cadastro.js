@@ -1,51 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
-import "./cadastro.css";
-import validateEmail from "../../validate";
 import useAuth from "../../hooks/useAuth.js";
+import "./cadastro.css";
 
 function Cadastro() {
 	const navigate = useNavigate();
 	const goToLoginPage = () => {
 		navigate("/login");
 	};
-
 	const goToHomePage = () => {
 		navigate("/");
 	};
-
-	// const [username, setUsername] = useState("");
-	// const [email, setEmail] = useState("");
-	// const [senha, setSenha] = useState("");
-	// const [showAlert, setShowAlert] = useState(false);
-
-	// const Cadastro = async (event) => {
-	// 	event.preventDefault();
-
-	// 	if (!validateEmail(email)) {
-	// 		setShowAlert(true);
-	// 		return;
-	// 	  }
-
-	// 	try {
-	// 		const response = await axios.post(
-	// 			"http://127.0.0.1:8000/api/users",
-	// 			{
-	// 				"username": username,
-	// 				"email": email,
-	// 				"password": senha,
-	// 				"is_admin": false
-	// 			  }
-	// 		);
-
-	// 		alert("Solicitação Enviada com sucesso!");
-
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 	}
-	// };
 
 	const [email, setEmail] = useState("");
 	const [emailConf, setEmailConf] = useState("");
@@ -54,7 +20,9 @@ function Cadastro() {
 
 	const { signup } = useAuth();
 
+	// Função de manipulação para lidar com o processo de registro
 	const handleSignup = () => {
+		// Verificando se todos os campos foram preenchidos
 		if (!email | !emailConf | !senha) {
 			setError("Preencha todos os campos");
 			return;
@@ -63,13 +31,16 @@ function Cadastro() {
 			return;
 		}
 
+		// Chamando a função de registro do hook de autenticação
 		const res = signup(email, senha);
 
+		// Verificando se houve algum erro durante o registro
 		if (res) {
 			setError(res);
 			return;
 		}
 
+		// Exibindo uma mensagem de sucesso e redirecionando para a página de login
 		alert("Usuário cadatrado com sucesso!");
 		navigate("/login");
 	};

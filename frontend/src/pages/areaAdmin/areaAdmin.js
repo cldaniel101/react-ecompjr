@@ -2,16 +2,15 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import "./areaAdmin.css";
 import ListServicos from "../../components/listServicos/listServicos";
 import useAuth from "../../hooks/useAuth";
+import "./areaAdmin.css";
 
 function AreaAdmin() {
-
 	const { signout } = useAuth();
-
 	const [servicos, setServicos] = useState([]);
 
+	// Função para buscar dados da API e atualizar o estado
 	const buscaDados = async () => {
 		try {
 			const response = await axios.get(
@@ -23,10 +22,12 @@ function AreaAdmin() {
 		}
 	};
 
+	// Efeito que executa a busca de dados quando o componente é montado ou quando setServicos é atualizado
 	useEffect(() => {
 		buscaDados();
 	}, [setServicos]);
 
+	// Função para deletar um serviço pelo ID
 	const deletarServico = async (id) => {
 		try {
 			await axios.delete(`http://localhost:8000/api/servicos/${id}`);
@@ -46,9 +47,10 @@ function AreaAdmin() {
 		navigate("/");
 	};
 
+	// Renderização do componente da área do administrador
 	return (
 		<div>
-			<header>
+			<header id="cabecalho-areaAdmin">
 				<button onClick={goToHomePage}>
 					<img
 						id="logo-cabecalho"
@@ -56,8 +58,8 @@ function AreaAdmin() {
 						alt="Logo Ecomp Jr"
 					/>
 				</button>
-				<button onClick={() => [signout(), navigate("/")]}>
-					Sair
+				<button id="botao-sair" onClick={() => [signout(), navigate("/login")]}>
+					Encerrar Sessão
 				</button>
 			</header>
 
