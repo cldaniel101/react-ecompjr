@@ -1,14 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
-import "./header.css";
 import { useNavigate } from "react-router-dom";
 
+import "./header.css";
+
 function Header() {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	const goToAdminPage = () => {
-		navigate("/admin")
-	}
+		navigate("/admin");
+	};
 
 	return (
 		<header>
@@ -31,10 +30,14 @@ function Header() {
 					</a>
 				</p>
 				<p>
+					{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
 					<a href="#">Carta de Serviço</a>
 				</p>
 				<p>
-					<a id="admin" onClick={goToAdminPage}>Administrador</a>
+					{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+					<a id="admin" onClick={goToAdminPage}>
+						Administrador
+					</a>
 				</p>
 			</div>
 			<div id="botao-cabecalho">

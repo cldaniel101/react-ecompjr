@@ -1,35 +1,19 @@
 from pydantic import BaseModel
 
 class ServicoBase(BaseModel):
+    """Esquema base para os dados do serviço."""
     nome_completo: str
     email: str
     descricao: str
 
 class ServicoRequest(ServicoBase):
-    ...
+    """Esquema para os dados de requisição do serviço."""
+    pass
 
 class ServicoResponse(ServicoBase):
+    """Esquema para a resposta do serviço, incluindo o ID."""
     id: int
 
     class Config:
-        orm_mode = True
-
-
-class UserCreate(BaseModel):
-    username: str
-    email: str
-    password: str
-    is_admin: bool = False
-
-class UserLogin(BaseModel):
-    username: str
-    password: str
-
-class UserResponse(BaseModel):
-    id: int
-    username: str
-    email: str
-    is_admin: bool
-
-    class Config:
+        """Configuração para habilitar o modo ORM."""
         orm_mode = True

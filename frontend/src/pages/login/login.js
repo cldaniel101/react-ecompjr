@@ -1,46 +1,17 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
-import "./login.css";
 import useAuth from "../../hooks/useAuth.js";
+import "./login.css";
 
 function Login() {
 	const navigate = useNavigate();
 	const goToRegisterPage = () => {
 		navigate("/cadastro");
 	};
-
 	const goToHomePage = () => {
 		navigate("/");
 	};
-
-	// const [username, setUsername] = useState("");
-	// const [senha, setSenha] = useState("");
-	// const [showAlert, setShowAlert] = useState(false);
-
-	// const Acesso = async (event) => {
-	// 	event.preventDefault();
-
-	// 	try {
-	// 		const response = await axios.post(
-	// 			"http://127.0.0.1:8000/api/login/",
-	// 			{
-	// 				username: username,
-	// 				password: senha,
-	// 			}
-	// 		);
-
-	// 		const { access_token } = response.data;
-
-	// 		localStorage.setItem("access_token", access_token);
-
-	// 		navigate("/admin");
-	// 	} catch (error) {
-	// 		setShowAlert(true);
-	// 		console.error(error);
-	// 	}
-	// };
 
 	const { signin } = useAuth();
 
@@ -48,34 +19,33 @@ function Login() {
 	const [senha, setSenha] = useState("");
 	const [error, setError] = useState("");
 
+	// Função de manipulação para lidar com o processo de login
 	const handleLogin = (e) => {
 		e.preventDefault();
 
+		// Verificando se todos os campos foram preenchidos
 		if (!email || !senha) {
 			setError("Preencha todos os campos");
 			return;
 		}
-		
+
 		const res = signin(email, senha);
-		
+
+		// Verificando se houve algum erro durante o login
 		if (res) {
 			setError(res);
 			return;
-		} 
+		}
 
-		// if (localStorage.getItem("access_token")) {
-		//   navigate("/admin");
-		//   return;
-		// }
-
+		// Redirecionando para a página do administrador após o login bem-sucedido
 		navigate("/admin");
-		
-	  };
-	  
+	};
 
+	// Renderização do componente da página de login
 	return (
 		<div>
 			<header>
+				{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
 				<a onClick={goToHomePage}>
 					<img
 						id="logo-cabecalho"
@@ -91,7 +61,11 @@ function Login() {
 				<div className="alert">{error}</div>
 
 				<div id="formulario-login">
-					<form id="form-login" autoComplete="on" onSubmit={handleLogin}>
+					<form
+						id="form-login"
+						autoComplete="on"
+						onSubmit={handleLogin}
+					>
 						<p className="campos">
 							<input
 								type="text"
@@ -130,6 +104,7 @@ function Login() {
 						</p>
 						<p id="legenda-cadastrar">
 							Ainda não possui uma conta?{" "}
+							{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
 							<a onClick={goToRegisterPage}>Cadastre-se</a>
 						</p>
 					</form>
