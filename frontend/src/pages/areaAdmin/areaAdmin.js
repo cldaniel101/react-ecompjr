@@ -4,8 +4,12 @@ import axios from "axios";
 
 import "./areaAdmin.css";
 import ListServicos from "../../components/listServicos/listServicos";
+import useAuth from "../../hooks/useAuth";
 
 function AreaAdmin() {
+
+	const { signout } = useAuth();
+
 	const [servicos, setServicos] = useState([]);
 
 	const buscaDados = async () => {
@@ -27,7 +31,7 @@ function AreaAdmin() {
 		try {
 			await axios.delete(`http://localhost:8000/api/servicos/${id}`);
 
-			buscaDados()
+			buscaDados();
 		} catch (error) {
 			console.error("Erro ao deletar serviço:", error);
 		}
@@ -52,6 +56,9 @@ function AreaAdmin() {
 						alt="Logo Ecomp Jr"
 					/>
 				</button>
+				<button onClick={() => [signout(), navigate("/")]}>
+					Sair
+				</button>
 			</header>
 
 			<main id="corpo-admin">
@@ -63,9 +70,12 @@ function AreaAdmin() {
 					</p>
 				</section>
 
-				<ListServicos servicos={servicos} onClickDelete={handleExcluirServico} />
+				<ListServicos
+					servicos={servicos}
+					onClickDelete={handleExcluirServico}
+				/>
 			</main>
-		</div>	
+		</div>
 	);
 }
 
