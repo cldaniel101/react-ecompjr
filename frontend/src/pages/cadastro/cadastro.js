@@ -4,6 +4,7 @@ import axios from "axios";
 
 import "./cadastro.css";
 import validateEmail from "../../validate";
+import useAuth from "../../hooks/useAuth.js"
 
 
 

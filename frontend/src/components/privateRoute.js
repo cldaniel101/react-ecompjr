@@ -4,7 +4,7 @@ import axios from "axios";
 
 import AreaAdmin from "../pages/areaAdmin/areaAdmin";
 
-const PrivateRoute = ({ component: AreaAdmin, ...rest }) => {
+const PrivateRoute = ({ children }) => {
 	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -26,19 +26,22 @@ const PrivateRoute = ({ component: AreaAdmin, ...rest }) => {
 	if (isLoading) {
 		return <div>Loading...</div>;
 	}
+	
+	// return (
+	// 	<Route
+	// 		render={(props) =>
+	// 			isAuthenticated ? (
+	// 				<AreaAdmin {...props} />
+	// 			) : (
+	// 				<Navigate to={{ pathname: "/login" }} />
+	// 			)
+	// 		}
+	// 	/>
+	// );
+	// const user = true
 
-	return (
-		<Route
-			{...rest}
-			render={(props) =>
-				isAuthenticated ? (
-					<AreaAdmin {...props} />
-				) : (
-					<Navigate to={{ pathname: "/login" }} />
-				)
-			}
-		/>
-	);
+	return isAuthenticated ? children : <Navigate to="/login"/>
+
 };
 
 export default PrivateRoute;

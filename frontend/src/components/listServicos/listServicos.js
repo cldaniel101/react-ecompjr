@@ -15,7 +15,7 @@ function ListServicos({ servicos, onClickDelete }) {
 						<h2>Descrição</h2>
 						<p>{servicos.descricao}</p>
 					</div>
-					<button id="bt-update">Update</button>
+					{/* <button id="bt-update">Update</button> */}
 					<button id="bt-delete" onClick={() => onClickDelete(servicos.id)}>Delete</button>
 					<span>ID: {servicos.id}</span>
 				</section>
