@@ -10,6 +10,11 @@ Esta landing page foi desenvolvida utilizando tecnologias modernas como React.js
 
 O objetivo deste projeto é revolucionar a forma como a Ecomp Jr lida com as solicitações de serviços, substituindo os métodos manuais por uma abordagem mais ágil e tecnologicamente avançada. A landing page irá simplificar o processo de solicitação de serviços e a gestão dos pedidos, aumentando a eficiência operacional da empresa e, consequentemente, a satisfação de seus clientes.
 
+## Requisitos
+
+- Python 3
+- Node.js (certifique-se de ter o node, o npm e o react-scripts instalados)
+
 ## Script
 
 1. **Instale as dependências Python**: Abra um terminal na pasta backend/ do projeto e execute o seguinte comando para instalar as dependências Python listadas no arquivo `requirements.txt`:
