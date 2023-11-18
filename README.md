@@ -40,6 +40,8 @@ A API estará disponível em http://localhost:8000. Você pode acessar a documen
 4. **Inicialize o React (Frontend)**: No terminal do frontend, siga as instruções abaixo:
 No diretório frontend/, você pode executar:
 
+### `npm install`
+e
 ### `npm start`
 
 (certifique-se de ter o Node.js instalado)
