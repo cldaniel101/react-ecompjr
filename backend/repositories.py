@@ -30,7 +30,7 @@ class ServicoRepository:
     @staticmethod
     def exists_by_id(db: Session, id: int) -> bool:
         """Verifica se um serviço existe pelo ID."""
-        return db.query(Servico).filter(Servico.id == id).exists().scalar()
+        return db.query(Servico).filter(Servico.id == id).count() > 0
 
     @staticmethod
     def delete_by_id(db: Session, id: int) -> None:
